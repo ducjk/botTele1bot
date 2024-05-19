@@ -45,28 +45,13 @@ let prevTitle = '0'
 
 let dataPresent
 
-const sendMessageToTele = (title, data) => {
-    let dataString = 'Xo so 45s \n'
-    dataString += `Ma so: ${title}\n`
-                  
-    if (data.isSuccess == true) dataString += `Thang: ${data.totalNumberRepeat} \n`
-    else if(data.isSuccess == false) dataString += `Thua: ${data.totalNumberRepeat} \n`
-                  
-    if (data.message){
-        dataString += data.message
-    }
-
-    console.log('Data string: ', dataString)
-                  
-    bot.sendMessage(idGroup, dataString);
-}
-
 setInterval(async() => {
     if (browser && page){
         dataPresent = await getData()
         if (dataPresent[0] != undefined) {
             if (dataPresent[0].split('\t')[0] != prevTitle){
                 console.log(dataPresent[0].split('\t')[0])
+                bot.sendMessage(idGroup, dataPresent[0].split('\t')[0]);
                 const data = handleChangeData(dataPresent)
                 if (data != ''){
                     bot.sendMessage(idGroup, `${dataPresent[0].split('\t')[0]}: ${data}`);
