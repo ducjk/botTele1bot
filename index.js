@@ -50,8 +50,6 @@ setInterval(async() => {
         dataPresent = await getData()
         if (dataPresent[0] != undefined) {
             if (dataPresent[0].split('\t')[0] != prevTitle){
-                console.log(dataPresent[0].split('\t')[0])
-                bot.sendMessage(idGroup, dataPresent[0].split('\t')[0]);
                 const data = handleChangeData(dataPresent)
                 if (data != ''){
                     bot.sendMessage(idGroup, `${dataPresent[0].split('\t')[0]}: ${data}`);
