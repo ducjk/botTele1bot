@@ -4,7 +4,7 @@ const mainFn = (data) => {
   
   let newData = [...data]
   
-  if(newData[0].split('\t')[0] == '0000'){
+  if(parseInt(newData[0].split('\t')[0]) == 0){
     total = 0
   }
   if (newData[1].split('\t')[2] == 'Trượt' && newData[2].split('\t')[2] == 'Trượt' && newData[3].split('\t')[2] == 'Trượt' && newData[4].split('\t')[2] == 'Trúng'){

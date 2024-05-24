@@ -7,7 +7,7 @@ const handleChangeData = require('./main')
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '6920442250:AAFuCkgrkwjd5ONbeo4MPx6OjH4qahfe328';
 const idGroup = -1002073958731
-const idBot = '6920442250:AAFuCkgrkwjd5ONbeo4MPx6OjH4qahfe328'
+const idBot = '5062222817'
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
@@ -24,6 +24,13 @@ const port = 3003
 
 // Sử dụng middleware CORS
 app.use(cors());
+
+// bot.on('message', (msg) => {
+//     const chatId = msg.chat.id;
+//     console.log('chatis: ', chatId);
+//     // send a message to the chat acknowledging receipt of their message
+//     bot.sendMessage(chatId, 'Received your message');
+//   });
 
 
 
