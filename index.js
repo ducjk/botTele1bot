@@ -7,6 +7,7 @@ const handleChangeData = require('./main')
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '6920442250:AAFuCkgrkwjd5ONbeo4MPx6OjH4qahfe328';
 const idGroup = -1002073958731
+const idBot = '6920442250:AAFuCkgrkwjd5ONbeo4MPx6OjH4qahfe328'
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
@@ -51,7 +52,7 @@ setInterval(async() => {
         if (dataPresent[0] != undefined) {
             if (dataPresent[0].split('\t')[0] != prevTitle){
                 const data = handleChangeData(dataPresent)
-                bot.sendMessage(idGroup, `${dataPresent[0].split('\t')[0]}`);
+                bot.sendMessage(idBot, `${dataPresent[0].split('\t')[0]}`);
                 if (data != ''){
                     bot.sendMessage(idGroup, `${dataPresent[0].split('\t')[0]}: ${data}`);
                 }
