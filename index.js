@@ -61,7 +61,6 @@ setInterval(async() => {
             const mang = dataPresent[0].split(regex);
             if (mang[0] != prevTitle){
                 const data = handleChangeData(dataPresent)
-                console.log(data.trim().length)
                 bot.sendMessage(idBot, `${mang[0]}`);
                 if (data.trim().length != 0){
                     bot.sendMessage(idGroup, `${mang[0]}: ${data}`);
