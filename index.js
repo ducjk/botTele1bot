@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const TelegramBot = require('node-telegram-bot-api');
 
-const handleChangeData = require('./main')
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '6920442250:AAFuCkgrkwjd5ONbeo4MPx6OjH4qahfe328';
@@ -15,7 +14,8 @@ const bot = new TelegramBot(token, {polling: true});
 
 const startBrowser = require('./browser')
 const scraperController = require('./scraperController')
-const scrapers = require('./scraper')
+const scrapers = require('./scraper');
+const handleChangeData = require('./main');
 
 // Khởi tạo ứng dụng Express
 const app = express();
@@ -57,13 +57,16 @@ setInterval(async() => {
     if (browser && page){
         dataPresent = await getData()
         if (dataPresent[0] != undefined) {
-            if (dataPresent[0].split('\t')[0] != prevTitle){
+            const regex = /\s+/g; // Khớp với một hoặc nhiều khoảng trắng
+            const mang = dataPresent[0].split(regex);
+            if (mang[0] != prevTitle){
                 const data = handleChangeData(dataPresent)
-                bot.sendMessage(idBot, `${dataPresent[0].split('\t')[0]}`);
-                if (data != ''){
-                    bot.sendMessage(idGroup, `${dataPresent[0].split('\t')[0]}: ${data}`);
+                console.log(data.trim().length)
+                bot.sendMessage(idBot, `${mang[0]}`);
+                if (data.trim().length != 0){
+                    bot.sendMessage(idGroup, `${mang[0]}: ${data}`);
                 }
-                prevTitle = dataPresent[0].split('\t')[0]
+                prevTitle = mang[0]
 
             }
         }
